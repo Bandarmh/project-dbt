@@ -1,0 +1,30 @@
+version: 2
+
+models:
+
+    - name: sales
+      description: on line by product
+                   aggregated of the sales by product over last 91 days
+      tests:
+        - unique:
+            column_name: "(orders_id || '-' || products_id)"
+            
+      columns:
+          - name: orders_id
+            tests : 
+            - not_null 
+
+          - name: products_id
+            description: PK - identifier of the product
+            tests : 
+            - not_null 
+            - unique
+
+          - name: qty
+            description: sum of the qty sold over the last 91 days aggregated by product 
+
+          - name: turnover
+
+          - name: purchase_cost
+
+          - name: margin
